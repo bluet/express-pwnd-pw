@@ -2,6 +2,7 @@ const test = require('tape');
 var appRoot = require('app-root-path');
 const pwndPw = require(appRoot + '/index.js');
 
+
 test('require and initial (default options)', async (assert) => {
 	assert.assert(pwndPw);
 	assert.true(typeof pwndPw === 'function');
