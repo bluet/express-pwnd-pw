@@ -20,7 +20,7 @@ test('require and initial (string)', async (assert) => {
 });
 
 test('require and initial (array)', async (assert) => {
-	let pwndPwModule = pwndPw('password', 'pw');
+	let pwndPwModule = pwndPw(['password', 'pw']);
 	assert.assert(pwndPwModule);
 	assert.true(typeof pwndPwModule === 'function');
 	assert.end();
