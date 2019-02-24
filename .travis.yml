@@ -1,7 +1,7 @@
 language: node_js
 node_js:
   - "node"
-  - "6"
+  - "8"
   - "10"
 
 dist: xenial
@@ -18,3 +18,4 @@ script:
 cache:
   directories:
     - '$HOME/.sonar/cache'
+    - 'coverage/'
