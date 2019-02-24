@@ -4,7 +4,7 @@
  * MIT Licensed
  */
 
-'use strict'
+'use strict';
 
 /**
  * Module dependencies.
@@ -36,55 +36,73 @@ function createPwndPw (options) {
 	let watchKey = new Set();
 	let watchIn = new Set();
 
+	// console.dir(options);
 	if (typeof options === 'string') {
+		// console.log('String');
 		watchKey = new Set([options]);
-	} else if (typeof options === 'array') {
+	} else if (Array.isArray(options)) {
+		// console.log('Array');
 		watchKey = new Set(options);
 	} else if (typeof options === 'object') {
+		// console.log('Object');
 		watchKey = new Set(options['watchKey']);
 		watchIn = new Set(options['watchIn']);
 	}
 
-	watchKey = watchKey.prototype.size > 0 ? watchKey : new Set(['password', 'passwd', 'pw']);
+	// console.dir(watchKey);
+	watchKey = watchKey.size > 0 ? watchKey : new Set(['password', 'passwd', 'pw']);
+	watchIn = watchIn.size > 0 ? watchIn : new Set(['params', 'body', 'query']);
 
-	if ( !(watchKey instanceof Set) || watchKey.prototype.size <= 0) {
-		throw Error("Invalid key name for express-pwnd-pw");
-	}
+	// if ( !(watchKey instanceof Set) || watchKey.size <= 0) {
+	// 	throw Error("Invalid key name for express-pwnd-pw");
+	// }
 
-	if ( !(watchIn instanceof Set) || watchKey.prototype.size <= 0) {
-		watchIn = new Set(['params', 'body', 'query']);
-	}
+	// if ( !(watchIn instanceof Set) || watchKey.size <= 0) {
+	// 	watchIn = new Set(['params', 'body', 'query']);
+	// }
 
 	return async function (req, res, next) {
 		let passwords = new Set();
 		// let matches;
 		let result = {};
 
+		// console.dir(watchKey);
+		// console.dir(watchIn);
+
 		// to pass to Session()
 		req.pwndPwKeys = Object.create(watchKey);
 		req.pwndPwIn = Object.create(watchIn);
 
+		// console.dir(req.params);
+
 		watchKey.forEach(element => {
-			if (watchIn.has('params') && req.params.includes(element)) {
+			if (watchIn.has('params') && Object.keys(req.params).includes(element)) {
 				passwords.add(req.params[element]);
 			}
-			if (watchIn.has('body') && req.body.includes(element)) {
+			if (watchIn.has('body') && Object.keys(req.body).includes(element)) {
 				passwords.add(req.body[element]);
 			}
-			if (watchIn.has('query') && req.query.includes(element)) {
+			if (watchIn.has('query') && Object.keys(req.query).includes(element)) {
 				passwords.add(req.query[element]);
 			}
 		});
 
-		await Promise.all(passwords.entries().map(async (pw) => {
-			let shasum = crypto.createHash('sha1').update(pw);
+
+		// console.dir([...passwords]);
+
+		await Promise.all([...passwords].map(async (pw) => {
+			let shasum = crypto.createHash('sha1').update(pw).digest('hex').toLowerCase();
 			let shasum_first = shasum.substring(0, 5);
 			let shasum_rest = shasum.substring(5);
 			let response = await axios.get('https://api.pwnedpasswords.com/range/' + shasum_first);
-			let [rest_str, count] = response.split(':');
-			if (rest_str === shasum_rest) {
-				result[shasum] = parseInt(count);
-			}
+			let hashes = response.data.split(/\r?\n/);
+			// console.dir(hashes);
+			hashes.filter((str) => {
+				let [rest_str, count] = str.split(':');
+				if (rest_str.toLowerCase() === shasum_rest) {
+					result[shasum] = parseInt(count);
+				}
+			});
 			return Promise.resolve();
 		}));
 
@@ -93,10 +111,10 @@ function createPwndPw (options) {
 
 		// define req.session getter / setter
 		Object.defineProperty(req, 'pwndPw', {
-			get: () => { return result }
+			get: () => { return result; }
 		});
 		
 		// Implement the middleware function based on the options object
-		next()
-	}
+		next();
+	};
 }

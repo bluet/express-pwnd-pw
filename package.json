@@ -4,7 +4,7 @@
   "description": "Express.js security middleware for checking user password safety with Have I Been Pwned (HIBP) API",
   "main": "index.js",
   "scripts": {
-    "test": "node t/*-test.js"
+    "test": "nyc --check-coverage --reporter=lcov tape ./t/[0-9]*.test.js | tap-spec"
   },
   "repository": {
     "type": "git",
@@ -25,5 +25,15 @@
   "bugs": {
     "url": "https://github.com/BlueT/express-pwnd-pw/issues"
   },
-  "homepage": "https://github.com/BlueT/express-pwnd-pw#readme"
+  "homepage": "https://github.com/BlueT/express-pwnd-pw#readme",
+  "dependencies": {
+    "axios": "^0.18.0"
+  },
+  "devDependencies": {
+    "app-root-path": "^2.1.0",
+    "node-mocks-http": "^1.7.3",
+    "nyc": "^13.3.0",
+    "tap-spec": "^5.0.0",
+    "tape": "^4.10.1"
+  }
 }
