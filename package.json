@@ -1,7 +1,7 @@
 {
   "name": "express-pwnd-pw",
   "version": "1.0.0",
-  "description": "Express.js security middleware for checking user password safety with Have I Been Pwned (HIBP) API",
+  "description": "Express.js (Node.js / Request) security middleware for checking user password safety with Have I Been Pwned (HIBP) API",
   "main": "index.js",
   "scripts": {
     "test": "nyc --check-coverage --reporter=lcov tape ./t/[0-9]*.test.js | tap-spec"
@@ -18,7 +18,9 @@
     "safety",
     "pwned",
     "HIBP",
-    "API"
+    "API",
+    "node",
+    "nodejs"
   ],
   "author": "BlueT - Matthew Lien - 練喆明 <BlueT@BlueT.org>",
   "license": "MIT",
