@@ -1,6 +1,6 @@
 {
   "name": "express-pwnd-pw",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Express.js security middleware for checking user password safety with Have I Been Pwned (HIBP) API",
   "main": "index.js",
   "scripts": {
