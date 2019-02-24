@@ -1,0 +1,20 @@
+language: node_js
+node_js:
+  - "node"
+  - "6"
+  - "10"
+
+dist: xenial
+sudo: required
+
+addons:
+  sonarqube:
+    organization: "bluet-github"
+jdk:
+  - oraclejdk8
+script:
+  - npm test
+  - sonar-scanner
+cache:
+  directories:
+    - '$HOME/.sonar/cache'
