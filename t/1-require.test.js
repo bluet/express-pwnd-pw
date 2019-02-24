@@ -1,32 +1,47 @@
 const test = require('tape');
-const httpMocks = require('node-mocks-http');
 var appRoot = require('app-root-path');
-
 const pwndPw = require(appRoot + '/index.js');
 
-// test('verifyToken resolves with a success message', (assert) => {
-// 	const req = httpMocks.createRequest({ 
-// 		cookies: { token: 'blablabla' }
-// 	});
-// 	const res = httpMocks.createResponse();
+test('require and initial (default options)', async (assert) => {
+	assert.assert(pwndPw);
+	assert.true(typeof pwndPw === 'function');
+	let pwndPwModule = pwndPw();
+	assert.assert(pwndPwModule);
+	assert.true(typeof pwndPwModule === 'function');
+	assert.end();
+});
 
-// 	return verifyToken(req, res).then((response) => {
-// 		...
-// 		assert.equal(typeof response.message, 'string');
-// 		...
-// 	});
-// });
+test('require and initial (string)', async (assert) => {
+	let pwndPwModule = pwndPw('password');
+	assert.assert(pwndPwModule);
+	assert.true(typeof pwndPwModule === 'function');
+	assert.end();
+});
 
-test('pwnd-pw testing password 12345 should have matches', (assert) => {
-	const req = httpMocks.createRequest({ 
-		params: { password: '12345' }
-	});
-	const res = httpMocks.createResponse();
-	return pwndPw()(req, res, () => {
-		// console.dir(response);
-		// console.dir(req.pwndPw);
-		assert.true(req.pwndPw);
-		// assert.equal(Array.isArray(response.things), 'true');
-		assert.end();
-	});
+test('require and initial (array)', async (assert) => {
+	let pwndPwModule = pwndPw('password', 'pw');
+	assert.assert(pwndPwModule);
+	assert.true(typeof pwndPwModule === 'function');
+	assert.end();
+});
+
+test('require and initial (object: watchKey)', async (assert) => {
+	let pwndPwModule = pwndPw({ 'watchKey': ['password', 'pw'] });
+	assert.assert(pwndPwModule);
+	assert.true(typeof pwndPwModule === 'function');
+	assert.end();
+});
+
+test('require and initial (object: watchIn)', async (assert) => {
+	let pwndPwModule = pwndPw({ 'watchIn': ['params'] });
+	assert.assert(pwndPwModule);
+	assert.true(typeof pwndPwModule === 'function');
+	assert.end();
+});
+
+test('require and initial (object: watchKey + watchIn)', async (assert) => {
+	let pwndPwModule = pwndPw({ 'watchKey': ['password', 'pw'], 'watchIn': ['params', 'body'] });
+	assert.assert(pwndPwModule);
+	assert.true(typeof pwndPwModule === 'function');
+	assert.end();
 });
