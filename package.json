@@ -1,0 +1,29 @@
+{
+  "name": "express-pwnd-pw",
+  "version": "0.0.1",
+  "description": "Express.js security middleware for checking user password safety with Have I Been Pwned (HIBP) API",
+  "main": "index.js",
+  "scripts": {
+    "test": "node t/*-test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BlueT/express-pwnd-pw.git"
+  },
+  "keywords": [
+    "express",
+    "security",
+    "middleware",
+    "password",
+    "safety",
+    "pwned",
+    "HIBP",
+    "API"
+  ],
+  "author": "BlueT - Matthew Lien - 練喆明 <BlueT@BlueT.org>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BlueT/express-pwnd-pw/issues"
+  },
+  "homepage": "https://github.com/BlueT/express-pwnd-pw#readme"
+}
