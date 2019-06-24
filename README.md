@@ -1,5 +1,10 @@
 [![Build Status](https://travis-ci.org/BlueT/express-pwnd-pw.svg?branch=master)](https://travis-ci.org/BlueT/express-pwnd-pw) 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=BlueT_express-pwnd-pw&metric=alert_status)](https://sonarcloud.io/dashboard?id=BlueT_express-pwnd-pw)
+[![Open Source Helpers](https://www.codetriage.com/bluet/express-pwnd-pw/badges/users.svg)](https://www.codetriage.com/bluet/express-pwnd-pw)  
+[![npm version](https://img.shields.io/npm/v/express-pwnd-pw.svg)](https://www.npmjs.org/package/express-pwnd-pw)
+[![install size](https://packagephobia.now.sh/badge?p=express-pwnd-pw)](https://packagephobia.now.sh/result?p=express-pwnd-pw)
+[![npm downloads](https://img.shields.io/npm/dm/express-pwnd-pw.svg)](http://npm-stat.com/charts.html?package=express-pwnd-pw)
+[![GitHub license](https://img.shields.io/github/license/BlueT/express-pwnd-pw.svg)](https://github.com/BlueT/express-pwnd-pw/blob/master/LICENSE)
 
 # express-pwnd-pw
 
