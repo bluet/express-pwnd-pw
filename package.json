@@ -34,7 +34,7 @@
   "devDependencies": {
     "app-root-path": "^2.1.0",
     "node-mocks-http": "^1.7.3",
-    "nyc": "^14.1.1",
+    "nyc": "^15.0.1",
     "tap-spec": "^5.0.0",
     "tape": "^4.10.1"
   }
