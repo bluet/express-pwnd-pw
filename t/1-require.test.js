@@ -1,5 +1,5 @@
 const test = require('tape');
-var appRoot = require('app-root-path');
+const appRoot = require('app-root-path');
 const pwndPw = require(appRoot + '/index.js');
 
 

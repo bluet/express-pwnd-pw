@@ -50,7 +50,7 @@ function createPwndPw (options) {
 	watchIn = watchIn.size > 0 ? watchIn : new Set(['params', 'body', 'query']);
 
 
-	return async function (req, res, next) {
+	return async function (req, _res, next) {
 		let passwords = new Set();
 		let result = {};
 

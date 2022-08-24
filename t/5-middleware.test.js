@@ -1,5 +1,5 @@
 const test = require('tape');
-var appRoot = require('app-root-path');
+const appRoot = require('app-root-path');
 const pwndPw = require(appRoot + '/index.js');
 const httpMocks = require('node-mocks-http');
 
@@ -13,7 +13,6 @@ test('pwnd-pw testing password 12345 should have matches', async (assert) => {
 	const res = httpMocks.createResponse();
 	
 	await pwndPw()(req, res, () => {
-		// console.dir(req.pwndPw);
 		assert.true(req.pwndPw);
 		assert.true(req.pwndPw['8cb2237d0679ca88db6464eac60da96345513964']);
 		assert.true(parseInt(req.pwndPw['8cb2237d0679ca88db6464eac60da96345513964']) >= 2333232);
