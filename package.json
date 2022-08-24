@@ -4,7 +4,7 @@
   "description": "Express.js (Node.js / Request) security middleware for checking user password safety with Have I Been Pwned (HIBP) API",
   "main": "index.js",
   "scripts": {
-    "test": "nyc --check-coverage --reporter=lcov tape ./t/[0-9]*.test.js | tap-spec"
+    "test": "nyc --check-coverage --reporter=lcov tape ./t/[0-9]*.test.js"
   },
   "repository": {
     "type": "git",
@@ -34,8 +34,7 @@
   "devDependencies": {
     "app-root-path": "^2.1.0",
     "node-mocks-http": "^1.7.3",
-    "nyc": "^14.1.1",
-    "tap-spec": "^5.0.0",
-    "tape": "^4.10.1"
+    "nyc": "^15.1.0",
+    "tape": "^5.6.0"
   }
 }
