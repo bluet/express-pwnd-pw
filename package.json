@@ -29,7 +29,7 @@
   },
   "homepage": "https://github.com/BlueT/express-pwnd-pw#readme",
   "dependencies": {
-    "axios": "^0.21.3"
+    "axios": "^1.6.0"
   },
   "devDependencies": {
     "app-root-path": "^2.1.0",
